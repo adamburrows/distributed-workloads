@@ -15,7 +15,7 @@ This example is designed to work with the **Fake GPU operator** for testing purp
 
 ## Container Image
 
-We will use the following prebuilt container image: docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727
+We will use a prebuilt container image.
 
 
 <details>
