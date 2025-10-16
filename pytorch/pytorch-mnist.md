@@ -64,6 +64,7 @@ runai pytorch submit \
 -g 1 \
 --workers=2 \
 --working-dir /opt/pytorch-mnist \
+--existing-pvc claimname=dist-datasets-v3-project-hpzdp,path=/katib \
 --command -- python3 "/opt/pytorch-mnist/mnist.py" "--epochs=1"
 ```
 | Flag            | Description                                                                 |
@@ -73,4 +74,5 @@ runai pytorch submit \
 | `-g`            | Number of whole GPUs                                                        |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)             |
 | `--working-dir` | Default directory when entering the container                               |
+| `--existing-pvc`| Mount persistent storage so we can save the accuracy/loss metrics                             |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed    |
