@@ -19,40 +19,15 @@ We will use a prebuilt container image.
 
 
 <details>
-<summary>If you want to build your own image, you could start from a PyTorch base image and load the MNIST dataset using Python.</summary>
+<summary>Interested in building your own image?</summary>
 
-#### Load the data
+1. Download the files in the build-image directory.
+2. Optionally make modifications to the Dockerfile and/or mnist.py file.
+3. Build, tag, and push the image.
 ```
-import torch
-import torchvision
-import torchvision.datasets as datasets
-import torchvision.transforms as transforms
-
-mnist_trainset = datasets.MNIST(root='./data', train=True, download=True, transform=transforms.ToTensor())
-mnist_testset = datasets.MNIST(root='./data', train=False, download=True, transform=transforms.ToTensor())
-```
-
-#### Create the Dockerfile
-```
-FROM pytorch/pytorch:1.0-cuda10.0-cudnn7-runtime
-
-ADD </path/to/dataset/locally> /opt/pytorch-mnist
-WORKDIR /opt/pytorch-mnist
-
-# Add folder for the logs.
-RUN mkdir /katib
-
-RUN chgrp -R 0 /opt/pytorch-mnist \
-  && chmod -R g+rwX /opt/pytorch-mnist \
-  && chgrp -R 0 /katib \
-  && chmod -R g+rwX /katib
-
-ENTRYPOINT ["python3", "/opt/pytorch-mnist/mnist.py"]
-```
-
-#### Build the image
-```
-docker build -t my-pytorch-mnist:latest .
+podman build -t my-pytorch-mnist:latest .
+podman tag my-pytorch-mnist:latest docker.io/<user>/<image>:<tag>
+podman push docker.io/<user>/<image>:<tag>
 ```
 </details>
 
@@ -60,7 +35,7 @@ docker build -t my-pytorch-mnist:latest .
 ```bash
 runai pytorch submit \
 -p testproject \
--i docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727 \
+-i docker.io/hireamb/pytorch-mnist-example:latest \
 -g 1 \
 --workers=2 \
 --working-dir /opt/pytorch-mnist \
@@ -74,5 +49,5 @@ runai pytorch submit \
 | `-g`            | Number of whole GPUs                                                        |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)             |
 | `--working-dir` | Default directory when entering the container                               |
-| `--existing-pvc`| Mount persistent storage so we can save the accuracy/loss metrics                             |
+| `--existing-pvc`| Mount persistent storage so we can save the accuracy/loss metrics                       |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed    |
