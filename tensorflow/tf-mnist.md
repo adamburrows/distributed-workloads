@@ -18,6 +18,8 @@ This example is designed to work with the **Fake GPU operator** for testing purp
 
 We will use a prebuilt container image.
 
+Run the TensorFlow workload.  
+
 ## Runai Command - TF workload
 ```bash
 runai tensorflow submit \
@@ -37,6 +39,8 @@ runai tensorflow submit \
 | `--workers`        | Number of worker pods (2 in this case; 1 master pod is implied)            |
 | `--existing-pvc`   | Mount persistent storage so we can save the accuracy/loss metrics          |
 | `--command`        | Overrides the container's entrypoint; the command after `--` is executed   |
+
+Run the Tensorboard as a workspace to view training and validation metrics.  
 
 ## Runai Command - Tensorboard
 ```bash
