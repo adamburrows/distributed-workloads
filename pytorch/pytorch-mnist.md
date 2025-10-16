@@ -71,7 +71,7 @@ runai pytorch submit \
 | --------------- | ------------------------------------------------------------------------ |
 | `-p`            | Run:ai project (here: `admin`)                                           |
 | `-i`            | Docker/Podman image to use                                               |
-| `-g`            | Number of whole GPUs          |
+| `-g`            | Number of whole GPUs                                 |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)          |
 | `--working-dir` | Default directory when entering the container                            |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed |
