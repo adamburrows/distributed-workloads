@@ -59,7 +59,7 @@ docker build -t my-pytorch-mnist:latest .
 ## Runai Command
 ```bash
 runai pytorch submit \
--p admin \
+-p testproject \
 -i docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727 \
 -g 1 \
 --workers=2 \

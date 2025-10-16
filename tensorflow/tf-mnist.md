@@ -6,10 +6,9 @@ This document introduces **Tensorflow** and **Tensorboard**, and demonstrates ho
 
 ## Introduction
 
-**Tensorflow** is an open-source machine learning framework developed by Google that enables building, training, and deploying deep learning models across CPUs, GPUs, and distributed systems.
-**Tensorboard** is TensorFlow’s built-in visualization tool that lets you monitor and analyze model metrics, such as loss, accuracy, and computational graphs.
+**Tensorflow** is an open-source machine learning framework developed by Google that enables building, training, and deploying deep learning models across CPUs, GPUs, and distributed systems.  
+**Tensorboard** is TensorFlow’s built-in visualization tool that lets you monitor and analyze model metrics, such as loss, accuracy, and computational graphs.  
 **MNIST** is a classic dataset of handwritten digits (0-9), commonly used for benchmarking image classification algorithms.
-
 
 This example is designed to work with the **Fake GPU operator** for testing purposes, so no actual GPU hardware is required.
 
@@ -22,7 +21,7 @@ We will use a prebuilt container image.
 ## Runai Command - TF workload
 ```bash
 runai tensorflow submit \
--p admin \
+-p testproject \
 -i kubeflow/tf-mnist-with-summaries:latest \
 -g 1 \
 --workers=3 \
