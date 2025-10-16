@@ -34,9 +34,9 @@ runai tensorflow submit \
 | --------------- | ------------------------------------------------------------------------ |
 | `-p`            | Run:ai project (here: `admin`)                                           |
 | `-i`            | Docker/Podman image to use                                               |
-| `-g`            | Number of whole GPUs          |
+| `-g`            | Number of whole GPUs                                 |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)          |
-| `--existing-pvc`| Mount persistent storage so we can save the acc/loss metrics         |
+| `--existing-pvc`| Mount persistent storage so we can save the acc/loss metrics           |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed |
 
 ## Runai Command - Tensorboard
@@ -51,7 +51,7 @@ runai workspace submit \
 ```
 
 | Flag                     | Description                                                                    |
-|---------------------------|--------------------------------------------------------------------------------|
+|---------------------------|-------------------------------------------------------------------------------|
 | `-p`                     | Run:ai project                                                                 |
 | `-i`                     | Docker/Podman image to use                                                     |
 | `--workers`              | Number of worker pods (2 in this case; 1 master pod is implied)                |
