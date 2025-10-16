@@ -34,9 +34,8 @@ runai tensorflow submit \
 | --------------- | ------------------------------------------------------------------------ |
 | `-p`            | Run:ai project (here: `admin`)                                           |
 | `-i`            | Docker/Podman image to use                                               |
-
+| `-g`            | Number of whole GPUs          |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)          |
-
 | `--existing-pvc`| Mount persistent storage so we can save the acc/loss metrics         |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed |
 
@@ -51,12 +50,12 @@ runai workspace submit \
 --command -- tensorboard --logdir /opt/data --host 0.0.0.0 --path_prefix /\${RUNAI_PROJECT}/\${RUNAI_JOB_NAME}
 ```
 
-| Flag            | Description                                                              |
-| ---------------------- | ------------------------------------------------------------------------------- |
-| `-p`                   | Run:ai project                                       |
-| `-i`                   | Docker/Podman image to use                                               |
-| `--workers`            | Number of worker pods (2 in this case; 1 master pod is implied)                 |
-| `--gpu-portion-request`| Fractional GPU request          |
-| `--external-url`                   | Create an ingress connection available from the UI          |
-| `--existing-pvc`       | Mount persistent storage so we can save the acc/loss metrics         |
-| `--command`            | Overrides the container's entrypoint; the command after `--` is executed |
+| Flag                     | Description                                                                    |
+|---------------------------|--------------------------------------------------------------------------------|
+| `-p`                     | Run:ai project                                                                 |
+| `-i`                     | Docker/Podman image to use                                                     |
+| `--workers`              | Number of worker pods (2 in this case; 1 master pod is implied)                |
+| `--gpu-portion-request`  | Fractional GPU request                                                         |
+| `--external-url`         | Create an ingress connection available from the UI                             |
+| `--existing-pvc`         | Mount persistent storage so we can save the accuracy/loss metrics              |
+| `--command`              | Overrides the container's entrypoint; the command after `--` is executed       |
