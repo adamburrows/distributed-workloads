@@ -22,16 +22,18 @@ We will use a prebuilt container image.
 <summary>Interested in building your own image?</summary>
 
 1. Download the files in the build-image directory.
-2. Optionally make modifications to the Dockerfile and/or mnist.py file.
+2. Optionally make modifications to the Dockerfile and/or .py file.
 3. Build, tag, and push the image.
 ```
-podman build -t my-pytorch-mnist:latest .
-podman tag my-pytorch-mnist:latest docker.io/<user>/<image>:<tag>
-podman push docker.io/<user>/<image>:<tag>
+podman build -t my-test-image:latest .
+podman tag localhost/my-test-image:latest docker.io/<user>/my-test-image:latest
+podman push docker.io/<user>/my-test-image:latest
 ```
 </details>
 
-## Runai Command
+Run the PyTorch workload.  
+
+## Runai Command - PT workload
 ```bash
 runai pytorch submit \
 -p testproject \
@@ -51,3 +53,25 @@ runai pytorch submit \
 | `--working-dir` | Default directory when entering the container                               |
 | `--existing-pvc`| Mount persistent storage so we can save the accuracy/loss metrics                       |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed    |
+
+Copy the plot-metrics.py code into the notebook after launching this workspace to view training metrics such as accuracy and loss.  
+
+## Runai Command - Jupyter Notebook
+```bash
+runai workspace submit \
+-p testproject \
+-i jupyter/scipy-notebook \
+-g 1 \
+--external-url container=8888 \
+--existing-pvc claimname=dist-datasets-v3-project-hpzdp,path=/opt/data \
+--command -- start-notebook.sh --NotebookApp.base_url=/\${RUNAI_PROJECT}/\${RUNAI_JOB_NAME} --NotebookApp.token=''
+```
+
+| Flag                     | Description                                                                    |
+|--------------------------|--------------------------------------------------------------------------------|
+| `-p`                     | Run:ai project                                                                 |
+| `-i`                     | Docker/Podman image to use                                                     |
+| `-g`  | Number of whole GPUs                                                         |
+| `--external-url`         | Create an ingress connection available from the UI                             |
+| `--existing-pvc`         | Mount persistent storage so we can save the accuracy/loss metrics              |
+| `--command`              | Overrides the container's entrypoint; the command after `--` is executed       |
