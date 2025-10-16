@@ -59,17 +59,19 @@ docker build -t my-pytorch-mnist:latest .
 ## Runai Command
 ```bash
 runai pytorch submit \
-    -p admin \
-    -i docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727 \
-    --workers=2 \
-    --working-dir /opt/pytorch-mnist \
-    --command -- python3 "/opt/pytorch-mnist/mnist.py" "--epochs=1"
+-p admin \
+-i docker.io/kubeflowkatib/pytorch-mnist:v1beta1-45c5727 \
+-g 1 \
+--workers=2 \
+--working-dir /opt/pytorch-mnist \
+--command -- python3 "/opt/pytorch-mnist/mnist.py" "--epochs=1"
 ```
 
 | Flag            | Description                                                              |
 | --------------- | ------------------------------------------------------------------------ |
 | `-p`            | Run:ai project (here: `admin`)                                           |
 | `-i`            | Docker/Podman image to use                                               |
+| `-g`            | Number of whole GPUs          |
 | `--workers`     | Number of worker pods (2 in this case; 1 master pod is implied)          |
 | `--working-dir` | Default directory when entering the container                            |
 | `--command`     | Overrides the container's entrypoint; the command after `--` is executed |
