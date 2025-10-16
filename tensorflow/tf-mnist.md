@@ -25,7 +25,7 @@ runai tensorflow submit \
 -i kubeflow/tf-mnist-with-summaries:latest \
 -g 1 \
 --workers=3 \
---existing-pvc claimname=dist-datasets-v2-project-c1vmr,path=/tmp/tensorflow/mnist/logs/mnist_with_summaries \
+--existing-pvc claimname=dist-datasets-v3-project-hpzdp,path=/tmp/tensorflow/mnist/logs/mnist_with_summaries \
 --command -- python /var/tf_mnist/mnist_with_summaries.py
 ```
 
@@ -45,7 +45,7 @@ runai workspace submit \
 -i tensorflow/tensorflow:latest \
 --gpu-portion-request 0.5 \
 --external-url container=6006 \
---existing-pvc claimname=dist-datasets-v2-project-c1vmr,path=/opt/data \
+--existing-pvc claimname=dist-datasets-v3-project-hpzdp,path=/opt/data \
 --command -- tensorboard --logdir /opt/data --host 0.0.0.0 --path_prefix /\${RUNAI_PROJECT}/\${RUNAI_JOB_NAME}
 ```
 
