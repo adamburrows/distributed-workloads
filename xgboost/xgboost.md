@@ -21,7 +21,7 @@ We will use a prebuilt container image.
 2. Optionally make modifications to the Dockerfile and/or .py file.
 3. Build, tag, and push the image.
 ```
-podman build -t my-test-image:latest .
+podman build -t my-test-image:latest --platform linux/amd64 .
 podman tag localhost/my-test-image:latest docker.io/<user>/my-test-image:latest
 podman push docker.io/<user>/my-test-image:latest
 ```
